@@ -14,6 +14,36 @@ resource "aws_budgets_budget" "budget" {
     threshold_type             = "PERCENTAGE"
     notification_type          = "FORECASTED"
     subscriber_email_addresses = [var.budget_email]
-    subscriber_sns_topic_arns  = [var.budget_sns]
+    subscriber_sns_topic_arns  = [data.aws_sns_topic.budget_updates.arn]
+  }
+}
+
+resource "aws_sns_topic" "budget_updates" {
+  count = var.enable_budget ? 1 : 0
+  name  = "${var.org_name}-budget-updates"
+}
+
+resource "aws_sns_topic_policy" "default" {
+  arn = aws_sns_topic.budget_updates.arn
+
+  policy = data.aws_iam_policy_document.sns_topic_policy_budget.json
+}
+
+data "aws_iam_policy_document" "sns_topic_policy_budget" {
+  policy_id = "__default_policy_ID"
+
+  statement {
+    actions = ["SNS:Publish"]
+
+    effect = "Allow"
+
+    principals {
+      type        = "Service"
+      identifiers = ["budgets.amazonaws.com"]
+    }
+    resources = [
+      aws_sns_topic.budget_updates.arn
+    ]
+    sid = "__default_statement_ID"
   }
 }
