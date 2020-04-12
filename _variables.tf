@@ -31,8 +31,5 @@ variable "budget_email" {
   description = "E-Mail addresses to notify."
   default     = ""
 }
-variable "budget_sns" {
-  description = "SNS Topic to notify."
-  default     = ""
-}
+
 
