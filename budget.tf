@@ -1,5 +1,5 @@
 resource "aws_budgets_budget" "budget" {
-  count = var.enable_budget ? 1 : 0
+  count             = var.enable_budget ? 1 : 0
   name              = "${var.org_name}-Monthly Budget"
   budget_type       = "COST"
   limit_amount      = format("%.1f", var.budget_ammount) #https://github.com/terraform-providers/terraform-provider-aws/issues/10692
@@ -16,11 +16,11 @@ resource "aws_budgets_budget" "budget" {
     subscriber_sns_topic_arns  = [aws_sns_topic.budget_updates.*.arn[0]]
   }
   cost_types {
-    include_credit             = false
+    include_credit = false
   }
   lifecycle {
     ignore_changes = [
-      time_period_start,notification
+      time_period_start, notification
     ]
   }
 }
@@ -31,8 +31,8 @@ resource "aws_sns_topic" "budget_updates" {
 }
 
 resource "aws_sns_topic_policy" "default" {
-  count  = var.enable_budget ? 1 : 0
-  arn    = aws_sns_topic.budget_updates.*.arn[0]
+  count = var.enable_budget ? 1 : 0
+  arn   = aws_sns_topic.budget_updates.*.arn[0]
 
   policy = data.aws_iam_policy_document.sns_topic_policy_budget.*.json[0]
 }
@@ -42,8 +42,8 @@ data "aws_iam_policy_document" "sns_topic_policy_budget" {
   policy_id = "__default_policy_ID"
 
   statement {
-    actions   = ["SNS:Publish"]
-    effect    = "Allow"
+    actions = ["SNS:Publish"]
+    effect  = "Allow"
     principals {
       type        = "Service"
       identifiers = ["budgets.amazonaws.com"]
