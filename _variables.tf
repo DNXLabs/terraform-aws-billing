@@ -31,9 +31,9 @@ variable "budget_email" {
   description = "E-Mail addresses to notify."
   default     = ""
 }
-variable "budget_sns" {
-  description = "SNS Topic to notify."
-  default     = ""
+variable "enable_chatbot_slack" {
+  description = "If true, will create aws chatboot and integrate to slack"
+  default     = "false"
 }
 variable "slack_channel_id" {
   description = "Sclack channel id to send budget notfication using AWS Chatbot"
