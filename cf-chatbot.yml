@@ -16,15 +16,16 @@ Parameters:
     
 
 Resources:
-  Type: AWS::Chatbot::SlackChannelConfiguration
-  Properties: 
-    ConfigurationName: 
-      Ref: ConfigurationNameParam
-    IamRoleArn: 
-      Ref: IamRoleArnArnParam
-    SlackChannelId: 
-      Ref: SlackChannelIdParam
-    SlackWorkspaceId: 
-      Ref: SlackWorkspaceIdParam
-    SnsTopicArns: 
-      - Ref: SnsTopicArnParam
+  Chatbot:
+    Type: AWS::Chatbot::SlackChannelConfiguration
+    Properties: 
+      ConfigurationName: 
+        !Ref ConfigurationNameParam
+      IamRoleArn: 
+        !Ref IamRoleArnArnParam
+      SlackChannelId: 
+        !Ref SlackChannelIdParam
+      SlackWorkspaceId: 
+        !Ref SlackWorkspaceIdParam
+      SnsTopicArns: 
+        - !Ref SnsTopicArnParam
