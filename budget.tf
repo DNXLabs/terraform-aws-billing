@@ -31,26 +31,24 @@ resource "aws_sns_topic" "budget_updates" {
 }
 
 resource "aws_sns_topic_policy" "default" {
-  count = var.enable_budget ? 1 : 0
-  arn = aws_sns_topic.budget_updates.*.arn[0]
+  count  = var.enable_budget ? 1 : 0
+  arn    = aws_sns_topic.budget_updates.*.arn[0]
 
   policy = data.aws_iam_policy_document.sns_topic_policy_budget.*.json[0]
 }
 
 data "aws_iam_policy_document" "sns_topic_policy_budget" {
-  count = var.enable_budget ? 1 : 0
+  count     = var.enable_budget ? 1 : 0
   policy_id = "__default_policy_ID"
 
   statement {
-    actions = ["SNS:Publish"]
-
-    effect = "Allow"
-
+    actions   = ["SNS:Publish"]
+    effect    = "Allow"
     principals {
       type        = "Service"
       identifiers = ["budgets.amazonaws.com"]
     }
     resources = [aws_sns_topic.budget_updates.*.arn[0]]
-    sid = "__default_statement_ID"
+    sid       = "__default_statement_ID"
   }
 }

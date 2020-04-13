@@ -1,6 +1,6 @@
 resource "aws_cloudformation_stack" "tf_chatbot" {
-  count = var.enable_budget ? 1 : 0
-  name = "terraform-chatbot-${var.org_name}"
+  count         = var.enable_budget ? 1 : 0
+  name          = "terraform-chatbot-${var.org_name}"
   parameters = {
     ConfigurationNameParam = var.org_name
     IamRoleArnArnParam     = aws_iam_role.chatbot-role.*.arn[0]
@@ -13,13 +13,13 @@ resource "aws_cloudformation_stack" "tf_chatbot" {
 
 
 resource "aws_iam_role" "chatbot-role" {
-  count = var.enable_budget ? 1 : 0
+  count                = var.enable_budget ? 1 : 0
   name                 = "${var.org_name}-chatbot-role"
   assume_role_policy   = data.aws_iam_policy_document.assume_role_chatbot.*.json[0]
 }
 
 resource "aws_iam_role_policy_attachment" "chatbot_policy" {
-  count = var.enable_budget ? 1 : 0
+  count      = var.enable_budget ? 1 : 0
   role       = aws_iam_role.chatbot-role.*.name[0]
   policy_arn = "arn:aws:iam::aws:policy/ReadOnlyAccess"
 }
