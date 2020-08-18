@@ -3,12 +3,9 @@
 [![Lint Status](https://github.com/DNXLabs/terraform-aws-billing/workflows/Lint/badge.svg)](https://github.com/DNXLabs/terraform-aws-billing/actions)
 [![LICENSE](https://img.shields.io/github/license/DNXLabs/terraform-aws-billing)](https://github.com/DNXLabs/terraform-aws-billing/blob/master/LICENSE)
 
-This terraform module is a AWS Billing Module that add billing related aws resources
+This terraform module is a AWS Billing Module that add billing related aws resources.
 
-This module requires:
- - Terraform Version >=0.12.20
-
-This modules creates the following resources:
+The following resources will be created:
 
 - IAM billing role
 - AWS Budget
@@ -26,6 +23,16 @@ In addition you have the option to:
 - Set Slack workspace id to send budget notfication using AWS Chatbot
 - Set the Maximum CLI/API session duration
 
-
 ![AWS Billing HLD](images/hld_billing.png)
 
+<!--- BEGIN_TF_DOCS --->
+
+<!--- END_TF_DOCS --->
+
+## Authors
+
+Module managed by [DNX Solutions](https://github.com/DNXLabs).
+
+## License
+
+Apache 2 Licensed. See [LICENSE](https://github.com/DNXLabs/terraform-aws-billing/blob/master/LICENSE) for full details.
