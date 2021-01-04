@@ -11,7 +11,7 @@ resource "aws_budgets_budget" "budget" {
     comparison_operator        = "GREATER_THAN"
     threshold                  = var.budget_threshold_percentage
     threshold_type             = "PERCENTAGE"
-    notification_type          = "${var.notification_type}"
+    notification_type          = var.notification_type
     subscriber_email_addresses = [var.budget_email]
     subscriber_sns_topic_arns  = [aws_sns_topic.budget_updates.*.arn[0]]
   }
