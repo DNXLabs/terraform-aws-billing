@@ -43,5 +43,8 @@ variable "slack_workspace_id" {
   description = "Sclack workspace id to send budget notfication using AWS Chatbot"
   default     = ""
 }
-
+variable "notification_type" {
+  description = "Budget notification type - The Forecast option is not available for Daily Budgets because the daily budgeted amount is always evaluated against the day before."
+  default     = "ACTUAL"
+}
 

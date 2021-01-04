@@ -54,6 +54,7 @@ In addition you have the option to:
 | role\_max\_session\_duration | Maximum CLI/API session duration | `string` | `"43200"` | no |
 | slack\_channel\_id | Sclack channel id to send budget notfication using AWS Chatbot | `string` | `""` | no |
 | slack\_workspace\_id | Sclack workspace id to send budget notfication using AWS Chatbot | `string` | `""` | no |
+| notification\_type | Budget notification type - The Forecast option is not available for Daily Budgets because the daily budgeted amount is always evaluated against the day before. | `string` | `"ACTUAL"` | no |
 
 ## Outputs
 
