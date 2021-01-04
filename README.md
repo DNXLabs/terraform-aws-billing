@@ -50,11 +50,11 @@ In addition you have the option to:
 | enable\_budget | Flag to enable AWS Budget cost control | `string` | `"false"` | no |
 | enable\_chatbot\_slack | If true, will create aws chatboot and integrate to slack | `string` | `"false"` | no |
 | idp\_account\_id | Account ID for IDP account to allow assuming normal users for billing | `any` | n/a | yes |
+| notification\_type | Budget notification type - The Forecast option is not available for Daily Budgets because the daily budgeted amount is always evaluated against the day before. | `string` | `"ACTUAL"` | no |
 | org\_name | Name for this organization | `any` | n/a | yes |
 | role\_max\_session\_duration | Maximum CLI/API session duration | `string` | `"43200"` | no |
 | slack\_channel\_id | Sclack channel id to send budget notfication using AWS Chatbot | `string` | `""` | no |
 | slack\_workspace\_id | Sclack workspace id to send budget notfication using AWS Chatbot | `string` | `""` | no |
-| notification\_type | Budget notification type - The Forecast option is not available for Daily Budgets because the daily budgeted amount is always evaluated against the day before. | `string` | `"ACTUAL"` | no |
 
 ## Outputs
 
